@@ -34,6 +34,7 @@ const myQuestions = [
 var question = document.getElementById("questions")
 var time = 30
 var currentQuestionindex = 0
+var endGame = document.getElementById("end-game")
 
 function startQuiz(){
     var startScreen = document.getElementById("start-screen")
@@ -57,7 +58,7 @@ function getQuestion() {
 
     choicesEl.innerHTML = ""
 
-    // maybe change id name
+    
     currentQuestion.answers.forEach(function(answer, i){
         var answerButton = document.createElement("button");
         // set attributes for class/id for button style
@@ -67,7 +68,12 @@ function getQuestion() {
         answerButton.onclick = questionClick;
 
         choicesEl.appendChild(answerButton)
+        console.log(question)
     }) 
+
+    
+
+     
 
 }
 
@@ -76,18 +82,36 @@ function questionClick(e) {
    
     if(myQuestions[currentQuestionindex].correctAnswer === e.innerText){ 
         console.log("correct")
-    //  Want text to say it's correct
-    // Want the clock to stay the same
-    //add to the userScore (userScore++)
 
-     }else{
-        //want the clock to decrese
-        //time -10? 
+     }else{ 
+         console.log("incorrect");
+         time-10; 
         console.log(time)
+        
     }
 
-    currentQuestionindex++,
-    getQuestion()
+    if(currentQuestionindex !== 3) {
+        currentQuestionindex++,
+        getQuestion()
+    } else {
+        question.setAttribute("class", "hide")
+        endGame.removeAttribute("class")
+    }
+
+
+
+    function setScores() {
+        console.log("current Highschore", highScore);
+
+        //clears it
+        clearQuestion()
+        userInput = document.createElement('INPUT')
+        userInput.setAttribute('type', )
+        userInput.setAttribute('placeholder', 'Add Initials');
+        userInput.classList.add('userInput');
+        answerElement.appendChild(userInput);
+
+    }
 
     // if statement whether it's wrong or not, taking time off the clock
 }
